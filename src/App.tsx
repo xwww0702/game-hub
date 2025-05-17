@@ -1,13 +1,21 @@
-import { Button, HStack } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <>
-      <HStack>
-        <Button colorPalette="teal">Click me</Button>
-        <Button>Click me</Button>
-      </HStack>
-    </>
+    <Grid
+      templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}
+    >
+      <GridItem area="nav">
+        <NavBar />
+      </GridItem>
+      <GridItem area="aside" bg="gold" display={{ base: "none", lg: "block" }}>
+        Aside
+      </GridItem>
+      <GridItem area="main" bg="pink">
+        Main
+      </GridItem>
+    </Grid>
   );
 }
 
