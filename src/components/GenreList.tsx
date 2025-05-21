@@ -10,13 +10,17 @@ import {
   Spinner,
   Button,
 } from "@chakra-ui/react";
-
+import { debounce } from "lodash";
 interface Props {
   onSelectGenre: (genre: Genre) => void;
   selecedGenre: Genre | null;
 }
 const GenreList = ({ onSelectGenre, selecedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
+  const handleSelectGenre = debounce((genre: Genre) => {
+    onSelectGenre(genre);
+  }, 300); // 300ms 防抖延迟
+
   isLoading && <Spinner />;
   if (error) return null;
   return (
@@ -32,7 +36,7 @@ const GenreList = ({ onSelectGenre, selecedGenre }: Props) => {
               ></Image>
               <Button
                 onClick={() => {
-                  onSelectGenre(genre);
+                  handleSelectGenre(genre);
                 }}
                 fontWeight={genre.id === selecedGenre?.id ? "bold" : "normal"}
                 fontSize="lg"
