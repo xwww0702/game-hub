@@ -1,3 +1,4 @@
+import type { Platform } from "@/hooks/useGames";
 import usePlatform from "@/hooks/usePlatform";
 import {
   Button,
@@ -7,8 +8,11 @@ import {
   useCheckboxGroup,
 } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-
-const PlatformSelector = () => {
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatform();
   const group = useCheckboxGroup({ defaultValue: ["autosave"] });
   if (error) return null;
@@ -16,26 +20,23 @@ const PlatformSelector = () => {
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
-          <BsChevronDown /> Platform
+          <BsChevronDown /> {selectedPlatform?.name || "Platform"}
         </Button>
       </Menu.Trigger>
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.ItemGroup>
-              <Menu.ItemGroupLabel>Platform</Menu.ItemGroupLabel>
-              {data.map(({ id, name }) => (
-                <Menu.CheckboxItem
-                  key={id}
-                  value={name}
-                  checked={group.isChecked(name)}
-                  onCheckedChange={() => group.toggleValue(name)}
+            {data.map((platform) => {
+              return (
+                <Menu.Item
+                  key={platform.id}
+                  value={platform.name}
+                  onClick={() => onSelectPlatform(platform)}
                 >
-                  {name}
-                  <Menu.ItemIndicator />
-                </Menu.CheckboxItem>
-              ))}
-            </Menu.ItemGroup>
+                  {platform.name}
+                </Menu.Item>
+              );
+            })}
           </Menu.Content>
         </Menu.Positioner>
       </Portal>
