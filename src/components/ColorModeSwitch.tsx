@@ -16,7 +16,9 @@ const ColorModeSwitch = () => {
         </Switch.Control>
         <Switch.Label />
       </Switch.Root>
-      <Text whiteSpace="nowrap">Light Mode</Text>
+      <Text whiteSpace="nowrap">
+        {colorMode === "dark" ? "Dark Mode" : "Light Mode"}
+      </Text>
     </HStack>
   );
 };
