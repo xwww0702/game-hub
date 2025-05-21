@@ -1,5 +1,5 @@
-import type { Platform, Game } from "../hooks/useGames";
-import { Text, Icon, HStack } from "@chakra-ui/react";
+import type { Platform } from "../hooks/useGames";
+import { Icon, HStack } from "@chakra-ui/react";
 import {
   FaWindows,
   FaPlaystation,
@@ -8,7 +8,6 @@ import {
   FaLinux,
   FaAndroid,
 } from "react-icons/fa";
-import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import type { IconType } from "react-icons/lib";
 import { BsGlobe } from "react-icons/bs";

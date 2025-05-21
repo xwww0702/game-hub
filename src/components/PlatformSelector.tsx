@@ -1,12 +1,6 @@
 import type { Platform } from "@/hooks/useGames";
 import usePlatform from "@/hooks/usePlatform";
-import {
-  Button,
-  Menu,
-  MenuCheckboxItem,
-  Portal,
-  useCheckboxGroup,
-} from "@chakra-ui/react";
+import { Button, Menu, Portal } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
@@ -14,7 +8,6 @@ interface Props {
 }
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatform();
-  const group = useCheckboxGroup({ defaultValue: ["autosave"] });
   if (error) return null;
   return (
     <Menu.Root>

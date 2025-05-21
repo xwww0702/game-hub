@@ -1,11 +1,9 @@
 import useGenres, { type Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image_url";
 import {
-  Box,
   ListItem,
   HStack,
   Image,
-  Text,
   List,
   Spinner,
   Button,
