@@ -1,13 +1,34 @@
-import axios from "axios";
+import type { GameQuery } from "@/App";
+import axios, { type AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {
     count: number;
     results: T[];
 }
 
-export default axios.create({
+// export default axios.create({
+//     baseURL: 'https://api.rawg.io/api',
+//     params :{
+//         key: '83a6879bf922489bb230c87c6054eb43'
+//     }
+// })
+
+const axiosInstance = axios.create({
     baseURL: 'https://api.rawg.io/api',
     params :{
         key: '83a6879bf922489bb230c87c6054eb43'
     }
 })
+
+export class apiClient<T> {
+    endpoint:string
+    constructor(endpoint:string){
+        this.endpoint=endpoint
+    }
+    getAll=(config:AxiosRequestConfig)=>
+        axiosInstance
+        .get<FetchResponse<T>>(this.endpoint,config)
+        .then(res=>res.data)
+
+}
+export default apiClient

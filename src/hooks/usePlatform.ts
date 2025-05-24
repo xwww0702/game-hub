@@ -6,11 +6,11 @@ export interface Platform {
     name: string;
     slug: string;
 }
-
+const api = new apiClient<Platform>('/platforms/lists/parents')
 // return useData<Platform>("/platforms/lists/parents")
 const usePlatform = () => useQuery({
     queryKey:['platforms'],
-    queryFn: ()=>apiClient.get<FetchResponse<Platform>>('/platforms/lists/parents').then(res=>res.data),
+    queryFn: api.getAll,
     staleTime: 24*60*60*1000,
 })
 

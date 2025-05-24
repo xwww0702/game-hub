@@ -1,4 +1,4 @@
-import type { Platform } from "../hooks/useGames";
+import type { Platform } from "../hooks/usePlatform";
 import { Icon, HStack } from "@chakra-ui/react";
 import {
   FaWindows,
@@ -26,6 +26,11 @@ const Platform_icon = ({ platforms }: Platform_iconProps) => {
     linux: FaLinux,
     android: FaAndroid,
     web: BsGlobe,
+    "commodore-amiga": BsGlobe,
+    sega: BsGlobe,
+    atari: BsGlobe,
+    "3do": BsGlobe,
+    "neo-geo": BsGlobe,
   };
   return (
     <HStack marginTop={1}>
