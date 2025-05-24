@@ -1,10 +1,6 @@
 
 import axios, { type AxiosRequestConfig } from "axios";
 
-interface Pages<T> {
-    results: T[]
-}
-
 export interface FetchResponse<T> {
     count: number;
     results: T[];
