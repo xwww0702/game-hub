@@ -12,7 +12,7 @@ import {
 import { debounce } from "lodash";
 interface Props {
   onSelectGenre: (genre: Genre) => void;
-  selecedGenre: Genre | null;
+  selecedGenre: number | null;
 }
 const GenreList = ({ onSelectGenre, selecedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
@@ -65,7 +65,7 @@ const GenreList = ({ onSelectGenre, selecedGenre }: Props) => {
               {/* 按钮里面的文字一直没有对齐，justifyContent="flex-start"，加了这个就对齐了 */}
               <Button
                 onClick={() => handleSelectGenre(genre)}
-                fontWeight={genre.id === selecedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre.id === selecedGenre ? "bold" : "normal"}
                 fontSize="md"
                 variant="ghost"
                 justifyContent="flex-start"
