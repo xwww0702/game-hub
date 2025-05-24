@@ -1,9 +1,14 @@
-import type { GameQuery } from "@/App";
+
 import axios, { type AxiosRequestConfig } from "axios";
+
+interface Pages<T> {
+    results: T[]
+}
 
 export interface FetchResponse<T> {
     count: number;
     results: T[];
+    next:string|null,
 }
 
 // export default axios.create({
