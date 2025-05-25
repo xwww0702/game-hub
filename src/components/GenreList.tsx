@@ -1,5 +1,6 @@
 import useGenres, { type Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image_url";
+import useGameQueryStore from "@/store";
 import {
   ListItem,
   HStack,
@@ -10,14 +11,13 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { debounce } from "lodash";
-interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selecedGenre: number | null;
-}
-const GenreList = ({ onSelectGenre, selecedGenre }: Props) => {
+
+const GenreList = () => {
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const setGenre = useGameQueryStore((s) => s.setGenre);
   const { data, isLoading, error } = useGenres();
   const handleSelectGenre = debounce((genre: Genre) => {
-    onSelectGenre(genre);
+    setGenre(genre.id);
   }, 300); // 300ms 防抖延迟
 
   isLoading && <Spinner />;
@@ -65,7 +65,7 @@ const GenreList = ({ onSelectGenre, selecedGenre }: Props) => {
               {/* 按钮里面的文字一直没有对齐，justifyContent="flex-start"，加了这个就对齐了 */}
               <Button
                 onClick={() => handleSelectGenre(genre)}
-                fontWeight={genre.id === selecedGenre ? "bold" : "normal"}
+                fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
                 fontSize="md"
                 variant="ghost"
                 justifyContent="flex-start"
