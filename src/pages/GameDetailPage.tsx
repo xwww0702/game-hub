@@ -3,7 +3,7 @@ import GameAttributes from "@/components/GameAttributes";
 import GameTraliers from "@/components/GameTraliers";
 import ScreenShots from "@/components/ScreenShots";
 import useGame from "@/hooks/useGame";
-import { SimpleGrid, Heading, GridItem, Grid } from "@chakra-ui/react";
+import { SimpleGrid, Heading, GridItem } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 const GameDetailPage = () => {

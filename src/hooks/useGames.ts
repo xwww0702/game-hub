@@ -3,7 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "@/services/api-client";
 import ms from "ms";
 import useGameQueryStore from "@/store";
-import type { Game } from "../Entities/Game";
+import type Game  from "../Entities/Game";
 // useData<Game>("/games",{params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering:gameQuery.sortOrder, search:gameQuery.searchText}},[gameQuery]);
 const api = new apiClient<Game>('/games')
 const useGames = () =>{
