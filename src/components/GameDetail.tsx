@@ -1,5 +1,4 @@
-import type { Game } from "@/Entities/Game";
-import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 interface Props {
   term: string;
   children?: React.ReactNode | React.ReactNode[];
