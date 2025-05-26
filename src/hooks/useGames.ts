@@ -13,6 +13,8 @@ export interface Game {
   }[];
   metacritic:number;
   rating_top: number;
+  slug: string;
+  description_raw: string;
 }
 // useData<Game>("/games",{params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering:gameQuery.sortOrder, search:gameQuery.searchText}},[gameQuery]);
 const api = new apiClient<Game>('/games')

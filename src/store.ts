@@ -1,11 +1,17 @@
 import {create} from 'zustand'
-import type { GameQuery } from './App'
+export interface GameQuery {
+  genreId?: number;
+  platformId?: number;
+  sortOrder?: string;
+  searchText?: string;
+  page?: number;
+}
 interface GameQueryStore {
     gameQuery:GameQuery
     setSearchText:(text:string)=>void,
     setGenre:(genreId:number)=>void,
     setPlatform:(platformId:number)=>void,
-    setOrder:(order:string)=>void
+    setOrder:(order:string)=>void,
 }
 const useGameQueryStore = create<GameQueryStore>(set=>({
     gameQuery:{},
