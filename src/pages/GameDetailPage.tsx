@@ -3,7 +3,7 @@ import GameAttributes from "@/components/GameAttributes";
 import GameTraliers from "@/components/GameTraliers";
 import ScreenShots from "@/components/ScreenShots";
 import useGame from "@/hooks/useGame";
-import { Heading } from "@chakra-ui/react";
+import { SimpleGrid, Heading, GridItem, Grid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 const GameDetailPage = () => {
@@ -13,11 +13,17 @@ const GameDetailPage = () => {
   if (error || !game) throw error;
   return (
     <>
-      <Heading>{game.name}</Heading>
-      <ExpandableText>{game.description_raw}</ExpandableText>
-      <GameAttributes game={game} />
-      <GameTraliers gameId={game.id} />
-      <ScreenShots gameId={game.id} />
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap={3}>
+        <GridItem>
+          <Heading>{game.name}</Heading>
+          <ExpandableText>{game.description_raw}</ExpandableText>
+          <GameAttributes game={game} />
+        </GridItem>
+        <GridItem>
+          <GameTraliers gameId={game.id} />
+          <ScreenShots gameId={game.id} />
+        </GridItem>
+      </SimpleGrid>
     </>
   );
 };
