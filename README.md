@@ -52,3 +52,4 @@ export default tseslint.config({
   },
 })
 ```
+API document: https://api.rawg.io/docs/
