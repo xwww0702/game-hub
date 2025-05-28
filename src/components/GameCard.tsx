@@ -5,13 +5,22 @@ import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "@/services/image_url";
 import Emoji from "./Emoji";
 import { Link } from "react-router-dom";
+import { useTracker } from "@/hooks/useTracker";
 interface Props {
   game: Game;
 }
 
 const GameCard = ({ game }: Props) => {
+  const trackEvent = useTracker("local_user");
+  const handleBuyClick = () => {
+    trackEvent("click_game", {
+      userId: "local_user",
+      productId: game.id,
+    });
+    // 业务逻辑
+  };
   return (
-    <Link to={`/games/${game.slug}`}>
+    <Link to={`/games/${game.slug}`} onClick={() => handleBuyClick()}>
       <Card.Root
         _hover={{
           transform: "scale(1.03)",

@@ -7,6 +7,7 @@ import GameCardContainer from "./GameCardContainer";
 import { Text } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useTracker } from "@/hooks/useTracker";
 
 const GameGrid = () => {
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
@@ -17,6 +18,8 @@ const GameGrid = () => {
   );
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if (error) return <Text>{error.message}</Text>;
+  const trackEvent = useTracker("page_view");
+  trackEvent("page_view", { userId: "user_001" });
   return (
     <>
       {/* dataLength 目前所有的游戏数量 */}
